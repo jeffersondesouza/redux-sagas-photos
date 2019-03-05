@@ -14,18 +14,17 @@ class ImageGrid extends Component {
     fetch(`https://api.unsplash.com/photos/?client_id=${key}&per_page=28`)
       .then(res => res.json())
       .then(images => {
-        console.log(JSON.stringify(images));
-        
         this.setState({
           images
         });
       });
+    this.props.dispatch({ type: 'HELLO' });
   }
 
   render() {
     const { images } = this.state;
-    console.log(this.props);
-    
+    console.log();
+
     return (
       <div className="content">
         <section className="grid">
@@ -44,9 +43,12 @@ class ImageGrid extends Component {
 }
 
 // {images, load}
-const mapStateToProps = ({images, load}) => ({
-  images, 
+const mapStateToProps = ({ images, load }) => ({
+  images: images.images,
   load
-})
+});
 
-export default connect(mapStateToProps,null)(ImageGrid);
+export default connect(
+  mapStateToProps,
+  null
+)(ImageGrid);

@@ -16,3 +16,5 @@ const imagesReducer = (state = initialState, action) => {
 };
 
 export default imagesReducer;
+
+
