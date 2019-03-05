@@ -32,7 +32,7 @@ class Header extends Component {
 const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToPros = dispatch => ({
-  loadImages: () => dispatch(actions.reloadImagesRequest())
+  loadImages: () => dispatch(actions.loadImagesRequest()),
 });
 
 export default connect(
