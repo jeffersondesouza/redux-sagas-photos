@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test Image Grid test SMART component 2 render ImageGrid on snapShot 1`] = `
+<div
+  className="content"
+>
+  <section
+    className="grid"
+  />
+  <div>
+    <div>
+      Loading...
+    </div>
+  </div>
+</div>
+`;
+
+exports[`test Image Grid test SMART component render ImageGrid on snapShot 1`] = `
+<div
+  className="content"
+>
+  <section
+    className="grid"
+  >
+    <div
+      className="item item-2"
+    >
+      <img
+        alt="jontyson"
+        src="https://images.unsplash.com/photo-1551714457-aabc6bbcff28?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjMzMTYwfQ"
+      />
+    </div>
+    <div
+      className="item item-1"
+    >
+      <img
+        alt="wurmloch"
+        src="https://images.unsplash.com/flagged/photo-1551706646-9c816bfbff8c?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjMzMTYwfQ"
+      />
+    </div>
+  </section>
+  <div>
+    <button
+      className="load"
+      onClick={[Function]}
+      type="button"
+    >
+      Load more
+    </button>
+  </div>
+</div>
+`;

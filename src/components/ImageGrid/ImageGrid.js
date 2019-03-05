@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../../actions';
 
+
 import './styles.css';
 
-class ImageGrid extends Component {
-  state = {
-    images: []
-  };
+export class ImageGrid extends Component {
 
   componentDidMount() {
     this.props.loadImages();
