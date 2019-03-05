@@ -13,9 +13,9 @@ import action from '../actions';
 
 import HttpFetch from '../services/HttpFetch';
 
-const getPage = state => state.nextPage;
+export const getPage = state => state.nextPage;
 
-function* loadImage() {
+export function* loadImage() {
   
   try {
     const page = yield select(getPage);
@@ -27,15 +27,13 @@ function* loadImage() {
 }
 
 
-function* watchLoadImages() {
+export function* watchLoadImages() {
   yield takeEvery(IMAGES.LOAD_REQUEST, loadImage);
 }
 
 
 
-
-
-function* reloadImage() {
+export function* reloadImage() {
   try {
     const page = yield select(getPage);
     const res = yield call(HttpFetch.get, 'photos', page);
@@ -45,7 +43,7 @@ function* reloadImage() {
   }
 }
 
-function* watchReloadImages() {
+export function* watchReloadImages() {
   while(true){
     yield take(IMAGES.RELOAD_REQUEST);
     yield fork(reloadImage);
