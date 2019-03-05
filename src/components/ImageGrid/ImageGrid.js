@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import actions from '../../actions';
 
 import './styles.css';
-
-const key = '5f96323678d05ff0c4eb264ef184556868e303b32a2db88ecbf15746e6f25e02';
 
 class ImageGrid extends Component {
   state = {
@@ -11,32 +10,28 @@ class ImageGrid extends Component {
   };
 
   componentDidMount() {
-    fetch(`https://api.unsplash.com/photos/?client_id=${key}&per_page=28`)
-      .then(res => res.json())
-      .then(images => {
-        this.setState({
-          images
-        });
-      });
-    this.props.dispatch({ type: 'HELLO' });
+    this.props.loadImages();
   }
 
   render() {
-    const { images } = this.state;
-    console.log();
+    const { images,  loading } = this.props;
 
     return (
       <div className="content">
-        <section className="grid">
-          {images.map(image => (
-            <div
-              key={image.id}
-              className={`item item-${Math.ceil(image.height / image.width)}`}
-            >
-              <img src={image.urls.small} alt={image.user.username} />
-            </div>
-          ))}
-        </section>
+        {loading ? (
+          <div>Loadding... </div>
+        ) : (
+          <section className="grid">
+            {images.map(image => (
+              <div
+                key={image.id}
+                className={`item item-${Math.ceil(image.height / image.width)}`}
+              >
+                <img src={image.urls.small} alt={image.user.username} />
+              </div>
+            ))}
+          </section>
+        )}
       </div>
     );
   }
@@ -45,10 +40,14 @@ class ImageGrid extends Component {
 // {images, load}
 const mapStateToProps = ({ images, load }) => ({
   images: images.images,
-  load
+  loading: load.loading
+});
+
+const mapDispatchToPros = dispatch => ({
+  loadImages: () => dispatch(actions.loadImagesRequest())
 });
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToPros
 )(ImageGrid);
