@@ -13,6 +13,12 @@ const loadImagesSuccess = images => ({
   payload: images
 });
 
+const reloadImagesSuccess = images => ({
+  type: IMAGES.RELOAD_SUCCESS,
+  payload: images
+});
+
+
 const loadImagesFailure = error => ({
   type: IMAGES.LOAD_FAILURE,
   error
@@ -22,5 +28,6 @@ export default {
   loadImagesRequest,
   loadImagesSuccess,
   loadImagesFailure,
-  reloadImagesRequest
+  reloadImagesRequest,
+  reloadImagesSuccess
 };

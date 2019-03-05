@@ -9,6 +9,10 @@ class Header extends Component {
     this.props.loadImages();
   };
   render() {
+    console.log();
+
+    const total = `- ${this.props.images.total}`;
+    
     return (
       <header className="header">
         <div className="header__brand">Photos, Sagas Photos!</div>
@@ -17,7 +21,7 @@ class Header extends Component {
             className="header__action-btn"
             onClick={this.handleReloadImages}
           >
-            Realod
+            Realod {total}
           </button>
         </div>
       </header>

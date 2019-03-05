@@ -3,7 +3,7 @@ const IMAGES = {
   LOAD_SUCCESS: 'images:LOAD_SUCCESS',
   LOAD_FAILURE: 'images:LOAD_FAILURE',
   RELOAD_REQUEST: 'images:RELOAD_REQUEST',
-
+  RELOAD_SUCCESS: 'images:RELOAD_SUCCESS'
 };
 
 export { IMAGES };

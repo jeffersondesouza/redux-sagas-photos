@@ -4,34 +4,53 @@ import {
   put,
   call,
   take,
-  all
+  all,
+  select, 
+  fork
 } from 'redux-saga/effects';
 import { IMAGES } from '../constants';
 import action from '../actions';
 
 import HttpFetch from '../services/HttpFetch';
 
+const getPage = state => state.nextPage;
+
 function* loadImage() {
+  
   try {
-    const res = yield call(HttpFetch.get, 'photos');
+    const page = yield select(getPage);
+    const res = yield call(HttpFetch.get, 'photos', page);
     yield put(action.loadImagesSuccess(res));
   } catch (error) {
     yield put(action.loadImagesFailure(error));
   }
 }
 
+
 function* watchLoadImages() {
   yield takeEvery(IMAGES.LOAD_REQUEST, loadImage);
 }
 
-function* watchReloadImages() {
-  yield takeEvery(IMAGES.RELOAD_REQUEST, loadImage);
 
-  /*   while (true) {
+
+
+
+function* reloadImage() {
+  try {
+    const page = yield select(getPage);
+    const res = yield call(HttpFetch.get, 'photos', page);
+    yield put(action.reloadImagesSuccess(res));
+  } catch (error) {
+    yield put(action.loadImagesFailure(error));
+  }
+}
+
+function* watchReloadImages() {
+  while(true){
     yield take(IMAGES.RELOAD_REQUEST);
-    yield call(loadImage);
-    yield take(IMAGES.LOAD_SUCCESS);
-  } */
+    yield fork(reloadImage);
+    yield take(IMAGES.RELOAD_SUCCESS);
+  }
 }
 
 function* rootSaga() {
