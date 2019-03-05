@@ -2,13 +2,11 @@ import React from 'react';
 
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
-import Adapter from 'enzyme-adapter-react-16';
-import { shallow, configure, mount } from 'enzyme';
 import configureStore from 'redux-mock-store';
+import { shallow, mount } from 'enzyme';
 
 import ConnectedHome, { ImageGrid } from '../ImageGrid/ImageGrid';
 
-configure({ adapter: new Adapter() });
 
 const IMAGES = [
   {
