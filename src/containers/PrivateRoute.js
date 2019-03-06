@@ -9,13 +9,18 @@ class PrivateRoute extends Component {
   }
 
   render() {
-    const { isAuthenticated, component, ...rest } = this.props;
-    // console.log(this.props);
+    const { component, ...rest } = this.props;
+    const { isAuthorazed, isAuthorazing } = this.props.auth;
+    console.log('isAuthorazed, isAuthorazing:', isAuthorazed, isAuthorazing);
 
     return (
       <Route
         {...rest}
-        render={props => React.createElement(component, props)}
+        render={props =>
+          isAuthorazed 
+            ? React.createElement(component, props) 
+            : <Redirect to="/login"/>
+        }
       />
     );
   }

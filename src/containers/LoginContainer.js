@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LoginForm from '../components/forms/LoginForm/LoginForm';
 import action from '../actions/auth';
@@ -12,19 +13,36 @@ class LoginFormContainer extends Component {
   handleLogout = () => {
     console.log('handleLogout:');
     this.props.logoutRequest('payload');
-
   };
 
   render() {
-    console.log(this.props);
+    const { isAuthorazed, isAuthorazing } = this.props.auth;
 
     return (
+      <Fragment>
+      {
+        (isAuthorazed && !isAuthorazing )
+        ? <Redirect to="panel" />
+        :(
+          <LoginForm
+          handleLogin={this.handleLogin}
+          handleLogout={this.handleLogout}
+          />
+          )
+        }
+        </Fragment>
+        /* 
+        
+      */
+
+        /*
       <Fragment>
         <LoginForm
           handleLogin={this.handleLogin}
           handleLogout={this.handleLogout}
         />
       </Fragment>
+       */
     );
   }
 }
@@ -32,8 +50,11 @@ class LoginFormContainer extends Component {
 const mapStateToPRops = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => ({
-  loginRequest: (payload) => dispatch(action.loginRequest(payload)),
-  logoutRequest: (payload) => dispatch(action.logoutRequest(payload)),
+  loginRequest: payload => dispatch(action.loginRequest(payload)),
+  logoutRequest: payload => dispatch(action.logoutRequest(payload))
 });
 
-export default connect(mapStateToPRops, mapDispatchToProps)(LoginFormContainer);
+export default connect(
+  mapStateToPRops,
+  mapDispatchToProps
+)(LoginFormContainer);

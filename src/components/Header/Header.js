@@ -3,6 +3,7 @@ import { Switch, Link, Route, Redirect } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import actions from '../../actions';
+import authActions from '../../actions/auth';
 
 import './styles.css';
 
@@ -11,7 +12,9 @@ class Header extends Component {
     this.props.loadImages();
   };
 
-  handleLogout = () => {};
+  handleLogout = () => {
+    this.props.logouOut();
+  };
 
   render() {
     console.log();
@@ -50,7 +53,8 @@ class Header extends Component {
 const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToPros = dispatch => ({
-  loadImages: () => dispatch(actions.loadImagesRequest())
+  loadImages: () => dispatch(actions.loadImagesRequest()),
+  logouOut: () => dispatch(authActions.logoutRequest())
 });
 
 export default connect(

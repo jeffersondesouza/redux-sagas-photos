@@ -27,6 +27,19 @@ const login = async () => {
   return key;
 };
 
+const logout = async () => {
+  const res = await fetch(
+    `${apiUrl}/photos/?client_id=${key}&per_page=28&page=1`
+  );
+  const images = await res.json();
+
+  if (res.status >= 400) {
+    throw new Error(images.errors);
+  }
+
+  return key;
+};
+
 const get = async (path, page = 1) => {
   const res = await fetch(
     `${apiUrl}/${path}/?client_id=${key}&per_page=28&page=${page}`
@@ -45,5 +58,6 @@ export default {
   get,
   storeToken,
   getToken,
-  cleanToken
+  cleanToken,
+  logout
 };
