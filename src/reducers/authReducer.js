@@ -18,9 +18,14 @@ const authReducer = (state = initialState, action) => {
         ...state,
         isAuthorazing: false,
         isAuthorazed: true,
-        token: action.payload.token,
+        token: action.payload.token
       };
     case AUTH.LOGOUT_SUCCESS:
+      return {
+        ...state,
+        isAuthorazed: false
+      };
+    case AUTH.UNAUTHORIZE_ROUTE:
       return {
         ...state,
         isAuthorazed: false
@@ -30,6 +35,5 @@ const authReducer = (state = initialState, action) => {
       return state;
   }
 };
-
 
 export default authReducer;

@@ -28,11 +28,17 @@ const logoutFailure = error => ({
   error
 });
 
+
+const unauthorize = error => ({
+  type: AUTH.UNAUTHORIZE_ROUTE
+});
+
 export default {
   loginRequest,
   loginSuccess,
   loginFailure,
   logoutRequest,
   logoutSuccess,
-  logoutFailure
+  logoutFailure,
+  unauthorize
 };
