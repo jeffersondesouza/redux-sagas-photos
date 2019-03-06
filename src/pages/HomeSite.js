@@ -1,5 +1,6 @@
 import React from 'react';
+import SiteHome from '../components/SiteHome';
 
-const HomeSite = () => <div>HomeSite</div>;
+const HomeSite = () => <SiteHome />;
 
 export default HomeSite;

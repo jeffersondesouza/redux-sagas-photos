@@ -1,0 +1,10 @@
+.site-home {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.site-home__title {
+  font-size: 45px;
+}
