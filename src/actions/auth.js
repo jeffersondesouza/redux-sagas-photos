@@ -28,6 +28,10 @@ const logoutFailure = error => ({
   error
 });
 
+const authorize = token => ({
+  type: AUTH.AUTHORIZE_ROUTE,
+  payload: { token }
+});
 
 const unauthorize = error => ({
   type: AUTH.UNAUTHORIZE_ROUTE
@@ -40,5 +44,6 @@ export default {
   logoutRequest,
   logoutSuccess,
   logoutFailure,
-  unauthorize
+  unauthorize,
+  authorize
 };

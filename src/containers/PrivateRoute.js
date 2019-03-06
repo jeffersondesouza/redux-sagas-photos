@@ -6,18 +6,21 @@ import autAction from '../actions/auth';
 
 class PrivateRoute extends Component {
   componentWillMount() {
-    const { isAuthorazed, isAuthorazing } = this.props.auth;
     const token = HttpFetch.getToken();
-    console.log('token:', token);
-
+    const { isAuthorazed } = this.props.auth;
+    console.log('token:', token)
+    console.log('isAuthorazed:', isAuthorazed)
+  
     if (!token) {
-      this.props.unauthorizeRoute();
+      this.props.history.go('/login');
     }
 
-    /*  if(token){
-      console.log('autentica');
-    } */
+    
+
+
   }
+
+  goToLoginPageIfHasNoToken = () => {};
 
   render() {
     const { component, ...rest } = this.props;
@@ -27,11 +30,7 @@ class PrivateRoute extends Component {
     return (
       <Route
         {...rest}
-        render={props =>
-          isAuthorazed
-            ? React.createElement(component, props)
-            : <Redirect to="/login"/>
-        }
+        render={props => React.createElement(component, props)}
       />
     );
   }

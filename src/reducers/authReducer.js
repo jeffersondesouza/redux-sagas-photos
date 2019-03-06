@@ -25,6 +25,12 @@ const authReducer = (state = initialState, action) => {
         ...state,
         isAuthorazed: false
       };
+
+    case AUTH.AUTHORIZE_ROUTE:
+      return {
+        ...state,
+        isAuthorazed: true
+      };
     case AUTH.UNAUTHORIZE_ROUTE:
       return {
         ...state,
