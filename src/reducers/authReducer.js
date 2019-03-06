@@ -2,7 +2,8 @@ import { AUTH } from '../constants';
 
 const initialState = {
   isAuthorazed: false,
-  isAuthorazing: false
+  isAuthorazing: false,
+  token: null
 };
 
 const authReducer = (state = initialState, action) => {
@@ -16,7 +17,8 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthorazing: false,
-        isAuthorazed: true
+        isAuthorazed: true,
+        token: action.payload.token,
       };
     case AUTH.LOGOUT_SUCCESS:
       return {
