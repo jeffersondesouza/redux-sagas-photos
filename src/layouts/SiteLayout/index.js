@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react';
-import { Switch, Link, Route, Redirect } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
 
 import HomeSite from '../../pages/HomeSite';
 import Login from '../../pages/Login';

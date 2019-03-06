@@ -1,0 +1,16 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 90.8vh;
+}
+
+.login__body {
+  flex: 1;
+}
+
+.login__header,
+.login__footer {
+  padding: 20px 0;
+}
