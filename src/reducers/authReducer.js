@@ -3,6 +3,7 @@ import { AUTH } from '../constants';
 const initialState = {
   isAuthorazed: false,
   isAuthorazing: false,
+  isValidatingToken: true,
   token: null
 };
 
@@ -35,6 +36,26 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthorazed: false
+      };
+
+    case AUTH.VALIDATE_TOKEN_REQUEST:
+      return {
+        ...state,
+        isValidatingToken: true
+      };
+    case AUTH.VALIDATE_TOKEN_SUCCESS:
+      return {
+        ...state,
+        isValidatingToken: false,
+        isAuthorazed: true,
+        token: action.payload.token
+      };
+    case AUTH.VALIDATE_TOKEN_FAILURE:
+      return {
+        ...state,
+        isValidatingToken: false,
+        isAuthorazed: false,
+        token: null
       };
 
     default:

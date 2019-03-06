@@ -33,8 +33,23 @@ const authorize = token => ({
   payload: { token }
 });
 
-const unauthorize = error => ({
+const unauthorize = () => ({
   type: AUTH.UNAUTHORIZE_ROUTE
+});
+
+const validateTokenRequest = token => ({
+  type: AUTH.VALIDATE_TOKEN_REQUEST,
+  payload: { token }
+});
+
+const validateTokenSuccess = token => ({
+  type: AUTH.VALIDATE_TOKEN_SUCCESS,
+  payload: { token }
+});
+
+const validateTokenFailure = error => ({
+  type: AUTH.VALIDATE_TOKEN_FAILURE,
+  error
 });
 
 export default {
@@ -45,5 +60,8 @@ export default {
   logoutSuccess,
   logoutFailure,
   unauthorize,
-  authorize
+  authorize,
+  validateTokenRequest,
+  validateTokenSuccess,
+  validateTokenFailure
 };

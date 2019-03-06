@@ -8,7 +8,6 @@ import {
   cancelled,
   select
 } from 'redux-saga/effects';
-import { push } from 'react-router-redux';
 import { AUTH } from '../constants';
 import action from '../actions/auth';
 
@@ -48,9 +47,9 @@ export function* loginFlow() {
     if (action.type === AUTH.LOGOUT_REQUEST) {
       yield cancel(task);
     }
+    yield call(HttpFetch.cleanToken);
     yield call(HttpFetch.logout);
     yield fork(logout);
-    yield call(HttpFetch.cleanToken);
     
   }
 }

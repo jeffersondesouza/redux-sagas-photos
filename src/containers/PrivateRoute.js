@@ -8,51 +8,34 @@ class PrivateRoute extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isValidatingToken: true
+      token: HttpFetch.getToken()
     };
   }
 
-  componentDidMount() {
-    const token = HttpFetch.getToken();
-    const { isAuthorazed } = this.props.auth;
-    if (!token) {
-      console.log('token:', token)
-
-      this.props.history.go('/login');
-      this.props.unauthorizeRoute();
-      this.setState({ isValidatingToken: false });
-
-    }else if (token) {
-      console.log('validate token:', token);
-      // valiate toke, colocar um IsValidating na rota pdeixar em loadng enquanto o back valida
+  componentWillMount() {
+    const token = this.state.token;
+    if (token) {
       this.props.validateToken(token);
-      this.setState({ isValidatingToken: false });
     }
   }
 
-  goToLoginPageIfHasNoToken = () => {};
-
   render() {
-    const { isValidatingToken } = this.state;
-    const { component, ...rest } = this.props;
-    const { isAuthorazed, isAuthorazing } = this.props.auth;
-    console.log({ isAuthorazed, isAuthorazing });
+    const { component: Component, ...rest } = this.props;
+    const { isAuthorazed, isValidatingToken } = this.props.auth;
 
-    /*     return (
-      <Route
-        {...rest}
-        render={props => React.createElement(component, props)}
-      />
-    ); */
+    if (!this.state.token) {
+      this.props.unauthorizeRoute();
+      return <Redirect to="/login" />;
+    }
 
-    return isValidatingToken ? (
+    return (isValidatingToken && !isAuthorazed) ? (
       <div>Loading...</div>
     ) : (
       <Route
         {...rest}
         render={props =>
           isAuthorazed ? (
-            React.createElement(component, props)
+            <Component {...props} />
           ) : (
             <Redirect
               to={{
@@ -70,8 +53,7 @@ class PrivateRoute extends Component {
 const mapStateToPRops = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => ({
-  loginSuccess: payload => dispatch(autAction.loginSuccess(payload)),
-  validateToken: token => dispatch(autAction.authorize(token)),
+  validateToken: token => dispatch(autAction.validateTokenRequest(token)),
   unauthorizeRoute: () => dispatch(autAction.unauthorize())
 });
 
