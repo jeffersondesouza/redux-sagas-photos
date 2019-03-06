@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 import configureStore from './store';
 
@@ -10,6 +10,7 @@ import PanelLayout from './layouts/PanelLayout';
 
 import './App.css';
 import NotFound from './pages/NotFound';
+import PrivateRoute from './containers/PrivateRoute';
 
 const store = configureStore();
 
@@ -17,13 +18,13 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <BrowserRouter>
+        <Router>
           <Switch>
-            <Route path="/panel" component={PanelLayout} />
+            <PrivateRoute path="/panel" component={PanelLayout} />
             <Route path="/" component={SiteLayout} />
-            <Route path="*" component={NotFound} />
+            <Route component={NotFound} />
           </Switch>
-        </BrowserRouter>
+        </Router>
       </Provider>
     );
   }

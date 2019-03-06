@@ -3,6 +3,7 @@ import { Switch, Link, Route, Redirect } from 'react-router-dom';
 
 import HomeSite from '../../pages/HomeSite';
 import Login from '../../pages/Login';
+import NotFound from '../../pages/NotFound';
 
 class SiteLayput extends Component {
   render() {
@@ -21,8 +22,11 @@ class SiteLayput extends Component {
             </ul>
           </nav>
         </header>
-        <Route exact path="/" component={HomeSite} />
-        <Route exact path="/login" component={Login} />
+        <Switch>
+          <Route exact path="/" component={HomeSite} />
+          <Route exact path="/login" component={Login} />
+          <Route component={NotFound} />
+        </Switch>
       </div>
     );
   }
