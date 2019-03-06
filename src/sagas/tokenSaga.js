@@ -8,6 +8,7 @@ function* validateToken() {
   try {
     const token = yield call(HttpFetch.login);
     // the execution order really metters!
+    yield call(HttpFetch.storeToken, token);
     yield put(action.validateTokenSuccess(token));
   } catch (error) {
     yield put(action.validateTokenFailure(error));
