@@ -10,18 +10,23 @@ class Header extends Component {
   handleReloadImages = () => {
     this.props.loadImages();
   };
+
+  handleLogout = () => {};
+
   render() {
     console.log();
 
     const total = `- ${this.props.images.total}`;
-    
+
     return (
       <header className="header">
         <div className="header__brand">
-          <Link to="/panel" className="header__title">Photos, Sagas Photos!</Link>
+          <Link to="/panel" className="header__title">
+            Photos, Sagas Photos!
+          </Link>
         </div>
         <div className="header__action">
-          <nav>
+          <nav className="header__nav">
             <Link to="/panel/details">Details</Link>
           </nav>
           <button
@@ -29,6 +34,12 @@ class Header extends Component {
             onClick={this.handleReloadImages}
           >
             Realod {total}
+          </button>
+          <button
+            className="header__action-btn header__action-btn--logout"
+            onClick={this.handleLogout}
+          >
+            Logout
           </button>
         </div>
       </header>
@@ -39,7 +50,7 @@ class Header extends Component {
 const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToPros = dispatch => ({
-  loadImages: () => dispatch(actions.loadImagesRequest()),
+  loadImages: () => dispatch(actions.loadImagesRequest())
 });
 
 export default connect(
