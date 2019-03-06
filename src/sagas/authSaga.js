@@ -19,8 +19,9 @@ export const getPage = state => state.nextPage;
 function* authorize(user, password) {
   try {
     const token = yield call(HttpFetch.login);
-    yield put(action.loginSuccess({token}));
+    // the execution order really metters!
     yield call(HttpFetch.storeToken, token);
+    yield put(action.loginSuccess({token}));
     return token;
   } catch (error) {
     yield put(action.loginFailure(error));
