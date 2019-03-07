@@ -5,8 +5,7 @@ import {
   all,
   fork,
   cancel,
-  cancelled,
-  select
+  cancelled
 } from 'redux-saga/effects';
 import { AUTH } from '../constants';
 import action from '../actions/auth';
@@ -20,7 +19,7 @@ function* authorize(user, password) {
     const token = yield call(HttpFetch.login);
     // the execution order really metters!
     yield call(HttpFetch.storeToken, token);
-    yield put(action.loginSuccess({token}));
+    yield put(action.loginSuccess({ token }));
     return token;
   } catch (error) {
     yield put(action.loginFailure(error));
@@ -50,7 +49,6 @@ export function* loginFlow() {
     yield call(HttpFetch.cleanToken);
     yield call(HttpFetch.logout);
     yield fork(logout);
-    
   }
 }
 
