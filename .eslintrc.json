@@ -1,0 +1,19 @@
+{
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "strict": 0,
+    "quotes": ["warn", "single"],
+    "no-unused-vars": "error",
+    "no-console": "warn",
+    "max-len": ["warn", { "code": 80 }, { "ignoreUrls": true }],
+    "prettier/prettier": "error"
+  },
+  "extends": [
+    "eslint:recommended",
+    "react-app",
+    "plugin:prettier/recommended"
+  ]
+}

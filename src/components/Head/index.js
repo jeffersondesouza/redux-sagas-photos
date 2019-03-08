@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import '../../index.css';
 
+const test = { joao: 'joao' };
+
 class Head extends Component {
   render() {
     return (
@@ -14,6 +16,7 @@ class Head extends Component {
         <meta name="theme-color" content="#000000" />
 
         <title>Sagas Photos</title>
+        <div>12345 67890 </div>
       </Helmet>
     );
   }
