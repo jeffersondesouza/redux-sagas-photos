@@ -9,6 +9,7 @@ import NotFound from '../../pages/NotFound';
 
 class PanelLayout extends Component {
   render() {
+    console.log('PanelLayout:')
     return (
       <div>
         <Header />

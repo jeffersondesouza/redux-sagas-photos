@@ -8,6 +8,7 @@ import SiteHeader from '../../components/SiteHeader';
 
 class SiteLayput extends Component {
   render() {
+    console.log('SiteLayput:')
     return (
       <div>
         <SiteHeader />
