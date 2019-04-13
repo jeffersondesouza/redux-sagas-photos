@@ -8,7 +8,7 @@ import SiteHeader from '../../components/SiteHeader';
 
 class SiteLayput extends Component {
   render() {
-    console.log('SiteLayput:')
+    console.log('SiteLayput:');
     return (
       <div>
         <SiteHeader />
@@ -17,6 +17,7 @@ class SiteLayput extends Component {
           <Route exact path="/login" component={Login} />
           <Route component={NotFound} />
         </Switch>
+        <SiteHeader />
       </div>
     );
   }

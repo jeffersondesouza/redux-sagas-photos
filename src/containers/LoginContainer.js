@@ -5,6 +5,10 @@ import LoginForm from '../components/forms/LoginForm/LoginForm';
 import action from '../actions/auth';
 
 class LoginFormContainer extends Component {
+
+  
+
+
   handleLogin = () => {
     console.log('handleLogin:');
     this.props.loginRequest('payload');

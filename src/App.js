@@ -11,19 +11,26 @@ import PanelLayout from './layouts/PanelLayout';
 import './App.css';
 import NotFound from './pages/NotFound';
 import PrivateRoute from './containers/PrivateRoute';
+import ScrollToTop from './components/ScrollToTop';
 
 const store = configureStore();
 
 class App extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
     return (
       <Provider store={store}>
         <Router>
-          <Switch>
-            <PrivateRoute path="/panel" component={PanelLayout} />
-            <Route path="/" component={SiteLayout} />
-            <Route component={NotFound} />
-          </Switch>
+          <ScrollToTop>
+            <Switch>
+              <PrivateRoute path="/panel" component={PanelLayout} />
+              <Route path="/" component={SiteLayout} />
+              <Route component={NotFound} />
+            </Switch>
+          </ScrollToTop>
         </Router>
       </Provider>
     );
