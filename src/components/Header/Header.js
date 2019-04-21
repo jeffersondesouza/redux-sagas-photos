@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Link, Route, Redirect } from 'react-router-dom';
+import { Switch, Link, NavLink, Route, Redirect } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import actions from '../../actions';
@@ -17,7 +17,6 @@ class Header extends Component {
   };
 
   render() {
-    console.log();
 
     const total = `- ${this.props.images.total}`;
 

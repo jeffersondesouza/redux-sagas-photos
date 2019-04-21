@@ -10,12 +10,10 @@ class LoginFormContainer extends Component {
 
 
   handleLogin = () => {
-    console.log('handleLogin:');
     this.props.loginRequest('payload');
   };
 
   handleLogout = () => {
-    console.log('handleLogout:');
     this.props.logoutRequest('payload');
   };
 

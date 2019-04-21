@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './styles.css';
 
@@ -7,14 +8,16 @@ const SiteHeader = () => (
   <header className="site-header">
     <div className="site-header__brand">Sagas Photos!</div>
     <nav className="site-header__nav">
-      <Link className="site-header__nav-link" to="/">
+      <NavLink className="site-header__nav-link" to="/" activeClassName="link-active">
         home
-      </Link>
-      <Link className="site-header__nav-link" to="/login">
+      </NavLink>
+      <NavLink activeClassName="link-active" className="site-header__nav-link" to="/login">
         login
-      </Link>
+      </NavLink>
     </nav>
   </header>
 );
 
-export default SiteHeader;
+const mapStateToProps = state => ({ ...state });
+
+export default connect(mapStateToProps)(SiteHeader);

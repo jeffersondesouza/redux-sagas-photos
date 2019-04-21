@@ -25,7 +25,6 @@ function* authorize(user, password) {
     yield put(action.loginFailure(error));
   } finally {
     if (yield cancelled()) {
-      console.log('cancel');
       // ... put special cancellation handling code here
     }
   }
