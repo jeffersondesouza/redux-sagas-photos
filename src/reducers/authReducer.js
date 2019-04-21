@@ -3,7 +3,7 @@ import { AUTH } from '../constants';
 const initialState = {
   isAuthorazed: false,
   isAuthorazing: false,
-  isValidatingToken: true,
+  isValidatingToken: false,
   token: null
 };
 

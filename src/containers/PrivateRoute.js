@@ -23,13 +23,20 @@ class PrivateRoute extends Component {
     const { component: Component, ...rest } = this.props;
     const { isAuthorazed, isValidatingToken } = this.props.auth;
 
+    console.log(this.props);
+    
+    if (!this.state) {
+      console.log(this.state);
+      return <Redirect to="/login" />;
+    }
+
     if (!this.state.token) {
       this.props.unauthorizeRoute();
       return <Redirect to="/login" />;
     }
 
     return (isValidatingToken && !isAuthorazed) ? (
-      <div>Loading...</div>
+      <div>Loading1...</div>
     ) : (
       <Route
         {...rest}

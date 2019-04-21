@@ -17,8 +17,14 @@ class Header extends Component {
   };
 
   render() {
-
+    
     const total = `- ${this.props.images.total}`;
+    
+    const { isAuthorazed, isAuthorazing, isValidatingToken, token } = this.props.auth;
+    if (!isAuthorazed && !isAuthorazing && !isValidatingToken && !token) {
+      console.log(this.props);
+      return <Redirect to="/" />;
+    }
 
     return (
       <header className="header">
@@ -31,10 +37,7 @@ class Header extends Component {
           <nav className="header__nav">
             <Link to="/panel/details">Details</Link>
           </nav>
-          <button
-            className="header__action-btn"
-            onClick={this.handleReloadImages}
-          >
+          <button className="header__action-btn" onClick={this.handleReloadImages}>
             Realod {total}
           </button>
           <button
